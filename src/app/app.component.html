@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="row gx-2">
+    <div class="col-sm-5 p-3 ">
+      <form>
+        <div class="mb-3 mt-3">
+          <label for="text" class="form-label h4">Name:</label>
+          <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" name="product" [(ngModel)] ="name">
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="text" class="form-label h3">UserName:</label>
+          <input type="text" class="form-control" name="username" id="username" placeholder="Username" name="price" [(ngModel)] ="username">
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="text" class="form-label h3">Email:</label>
+          <input type="text" class="form-control" name="email" id="email" placeholder="Email" name="email" [(ngModel)] ="email">
+        </div>
+        <span>
+          <label class="h4">Gender</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="fitem" id="inlineRadio1" value="Female"  [(ngModel)] ="type">
+            <label class="form-check-label" for="inlineRadio1">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="utnesil" id="inlineRadio2" value="Male"  [(ngModel)] ="type">
+            <label class="form-check-label" for="inlineRadio2">Male</label>
+          </div>
+        </span><br><br>
+
+        <span>
+          <label class="h4">City</label><br><br>
+          <div class="col-sm-3 ml-4">
+            <select class="form-select" name="picked" id="specificSizeSelect" [(ngModel)] ="city">
+              <option selected>Select City...</option>
+              <option value="Abuja" name="White">Abuja</option>
+              <option value="Moscow" name="brown">Moscow</option>
+              <option value="London" name="red" >London</option>
+              <option value="Cape Town" name="yellow" >Cape Town</option>
+              <option value="Tunis" name="blue" >Tunis</option>
+            </select>
+           </div>
+
+        </span>
+      </form>
+      <br><br>
+      <button class="btn btn-primary"  (click)="submit()" type='button'>Submit</button>
+    </div>
+    <div class="col-sm-7 p-3 ">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let user of users; let i = index">
+           <td scope="col">{{i + 1}}</td>
+           <td>{{user.name}}</td>
+           <td>{{user.username}}</td>
+           <td>{{user.email}}</td>
+           <td><div class="box">
+            <a class="button" (click)="openEditDialogue(user)" href="#popup1">Edit</a>
+          </div></td> 
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>Edit User</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+      <div class="modal-body">
+        <div class="mb-3 mt-3">
+          <label for="text" class="form-label h4">Name</label>
+          <input type="text" class="form-control" name="pname" id="product" placeholder="Enter Name" name="product" [(ngModel)] ="editform.name">
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="text" class="form-label h3">UserName:</label>
+          <input type="text" class="form-control" name="pprice" id="price" placeholder="Username" name="price" [(ngModel)] ="editform.username">
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="text" class="form-label h3">Email:</label>
+          <input type="text" class="form-control" name="pprice" id="price" placeholder="Email" name="price" [(ngModel)] ="editform.email">
+        </div>
+      </div><br>
+      <label class="h4">Gender</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="fitem" id="inlineRadio1" value="Female"  [(ngModel)] ="editform.type">
+            <label class="form-check-label" for="inlineRadio1">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="utnesil" id="inlineRadio2" value="Male"  [(ngModel)] ="editform.type">
+            <label class="form-check-label" for="inlineRadio2">Male</label>
+          </div>
+          
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveNewEdit(users)">Save changes</button>
+      </div>
+		</div>
+	</div>
+</div>
+
+<router-outlet></router-outlet>
+
