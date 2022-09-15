@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import axios, { AxiosPromise } from 'axios';
+import axios  from 'axios';
 
 @Component({
   selector: 'app-root',
@@ -24,27 +24,9 @@ export class AppComponent {
     this.getUsers();
   }
 
-  
 
   submit(){
     
-     //Make post request to the API
-    //  axios.post('https://jsonplaceholder.typicode.com/users', {
-      
-    //   name : this.name,
-    //   username : this.username,
-    //   emails: this.email,
-    //   type: this.type,
-    //   color: this.color
-    // })
-    // .then( (response) => {
-    //   console.log(response);
-    //   this.users.push(response.data)
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // })
-
    (async () => {
       try {
         const response = await axios.post('https://jsonplaceholder.typicode.com/users',{
@@ -55,19 +37,14 @@ export class AppComponent {
             city: this.city
         });
         console.log(response);
+        //this.getUsers();
+
+        //Manual update
         this.users.push(response.data);
       }catch (error) {
         console.error(error);
       }
     })()
-
-
-     // Get the new user from the response
-    // this.users.push(response.data)
-
-     //Push it to the users
-    //  this.users.push(user);
-    //  console.log(user)
   }
 
   openEditDialogue(user:any){
@@ -76,13 +53,34 @@ export class AppComponent {
     this.editform = {...user};
   };
 
-  saveNewEdit(user:any){
-      this.users.forEach(user)
-      if(this.editform.name == this.users.name){
-      this.users.replace(user)}
-      else{
-        alert("Data duplication");
+  saveNewEdit(){
+    //rrun the put request
+    (async () => {
+      try {
+        const response:any = await axios.put(`https://jsonplaceholder.typicode.com/users/${this.editform.id}`,this.editform);
+        console.log(response);
+    //equate the updated user to response 
+        let updatedUser = response.data
+
+      // this.getUsers();
+
+      //Manual update
+      //map throught the available users to return updated user
+        let newUserList = this.users.map((user: any) => {
+          if (updatedUser.id == user.id) {
+            return updatedUser;
+          }else{
+            return user;
+          }
+        })
+
+        this.users = newUserList;
+   
+      }catch (error) {
+        console.error(error);
       }
+    })()
+ 
     }
 
     getUsers =  async  () => {
@@ -94,7 +92,33 @@ export class AppComponent {
         console.error(error);
       }
     }
-    
-  
-  }
 
+    
+    delete(userToDelete:any){
+      (async() => {
+        try{
+          const response = await axios.delete(`https://jsonplaceholder.typicode.com/users/${userToDelete.id}`);
+            console.log(response);
+
+           // this.getUsers();
+
+           //Manual update
+           let updatedUserList = this.users.filter((user:any) => {
+              if(user.id !== userToDelete.id){
+                return user;
+              }
+           })
+
+           this.users = updatedUserList;
+           
+        } catch (error){
+          console.log(error)
+          }
+        }
+  )()};
+
+
+}
+
+
+  

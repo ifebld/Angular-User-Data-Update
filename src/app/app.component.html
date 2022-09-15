@@ -64,6 +64,7 @@
            <td><div class="box">
             <a class="button" (click)="openEditDialogue(user)" href="#popup1">Edit</a>
           </div></td> 
+          <td><div class="box"> <a class="buttonDelete" (click)="delete(user)">Delete</a> </div></td>
           </tr>
         </tbody>
       </table>
@@ -82,29 +83,29 @@
       <div class="modal-body">
         <div class="mb-3 mt-3">
           <label for="text" class="form-label h4">Name</label>
-          <input type="text" class="form-control" name="pname" id="product" placeholder="Enter Name" name="product" [(ngModel)] ="editform.name">
+          <input type="text" class="form-control" name="name" id="product" placeholder="Enter Name"  [(ngModel)] ="editform.name">
         </div>
         <div class="mb-3 mt-3">
           <label for="text" class="form-label h3">UserName:</label>
-          <input type="text" class="form-control" name="pprice" id="price" placeholder="Username" name="price" [(ngModel)] ="editform.username">
+          <input type="text" class="form-control" name="username" id="price" placeholder="Username"  [(ngModel)] ="editform.username">
         </div>
         <div class="mb-3 mt-3">
           <label for="text" class="form-label h3">Email:</label>
-          <input type="text" class="form-control" name="pprice" id="price" placeholder="Email" name="price" [(ngModel)] ="editform.email">
+          <input type="text" class="form-control" name="email" id="price" placeholder="Email"  [(ngModel)] ="editform.email">
         </div>
       </div><br>
       <label class="h4">Gender</label><br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="fitem" id="inlineRadio1" value="Female"  [(ngModel)] ="editform.type">
+            <input class="form-check-input" type="radio" name="female" id="inlineRadio1" value="Female"  [(ngModel)] ="editform.type">
             <label class="form-check-label" for="inlineRadio1">Female</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="utnesil" id="inlineRadio2" value="Male"  [(ngModel)] ="editform.type">
+            <input class="form-check-input" type="radio" name="male" id="inlineRadio2" value="Male"  [(ngModel)] ="editform.type">
             <label class="form-check-label" for="inlineRadio2">Male</label>
           </div>
           
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="saveNewEdit(users)">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="saveNewEdit()">Save changes</button>
       </div>
 		</div>
 	</div>

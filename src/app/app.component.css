@@ -12,6 +12,14 @@
     cursor: pointer;
     transition: all 0.3s ease-out;
   }
+
+  .buttonDelete{
+    font-size: 1em;
+    color: rgb(197, 56, 56);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out ;
+  }
   
   .overlay {
     position: fixed;
